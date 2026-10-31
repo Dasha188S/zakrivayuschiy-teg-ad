@@ -1,16 +1,305 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--main-font);
+  font-variation-settings: "wght" var(--font-weight-regular);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  inline-size: 100%;
+}
+
+.header__wrapper {
+  margin-block: clamp(6rem, 5rem + 4vw, 6.25rem);
+  padding-block: clamp(7.5rem, 7rem + 1.6vw, 8rem) 1.5625rem;
+  border: 2px solid var(--text-color);
+  background-color: var(--background-color);
+  font-family: var(--accent-font);
+  text-align: center;
+  inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+}
+
+.header__title {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.header__subtitle {
+  margin-block-start: 1.25rem;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.125rem;
+  padding-block-end: 6.4375rem;
+  inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+}
+
+.cards__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.125rem;
+  inline-size: 100%;
+}
+
+.card {
+  border: 2px solid var(--text-color);
+  background-color: var(--background-color);
+}
+
+.card__title {
+  padding: 0.3125rem 0.625rem;
+  border-block-end: 2px solid var(--text-color);
+  font-size: 1.125rem;
+  line-height: 1.21;
+  font-variation-settings: "wght" var(--font-weight-bold);
+}
+
+.card__image-wrapper {
+  display: grid;
+}
+
+.card__image-wrapper > * {
+  grid-area: 1 / 1;
+}
+
+.card__label {
+  z-index: 1;
+  justify-self: end;
+  align-self: start;
+  margin: 1.5625rem 1.5625rem 0 0;
+  mix-blend-mode: hard-light;
+  font-family: var(--accent-font);
+  font-size: 0.875rem;
+  text-shadow:
+    -1px 0 var(--accent-color),
+    0 1px var(--accent-color),
+    1px 0 var(--accent-color),
+    0 -1px var(--accent-color);
+}
+
+@supports (
+  (text-stroke: 1px var(--accent-color)) or
+    (-webkit-text-stroke: 1px var(--accent-color))
+) {
+  .card__label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--accent-color);
+    text-stroke: 1px var(--accent-color);
+  }
+}
+
+.card__image {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.filter-brightness {
+  filter: brightness(120%);
+}
+
+.filter-grayscale {
+  filter: grayscale(0.8);
+}
+
+.filter-sepia {
+  filter: sepia(0.6);
+}
+
+.filter-contrast {
+  filter: contrast(2);
+}
+
+.filter-hue {
+  filter: hue-rotate(90deg);
+}
+
+.filter-saturate {
+  filter: saturate(1.5);
+}
+
+.filter-invert {
+  filter: invert(0.75);
+}
+
+.filter-mix {
+  filter: saturate(3) grayscale(0.8);
+}
+
+.card__content {
+  border-block-start: 2px solid var(--text-color);
+}
+
+.card__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6875rem;
+  padding: 1.5625rem;
+  font-size: 1.125rem;
+  line-height: 1.17;
+}
+
+.card__bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.375rem;
+  padding: 0 1.5625rem 1.5625rem;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--text-color);
+  background-color: var(--background-color);
+  font-family: var(--accent-font);
+  font-size: 0.875rem;
+  line-height: 0.9;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--text-color);
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.button:hover::after {
+  transform: translateX(0);
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 var(--text-color);
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: var(--accent-color);
+  mix-blend-mode: difference;
+}
+
+.card__icon-button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition: outline 0.3s ease;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 0;
+}
+
+.card__like-button {
+  padding: 0.5625rem 1.0625rem;
+  min-inline-size: 8.125rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+  margin-block-end: 6.375rem;
+}
+
+.button_save {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9375rem 1.25rem;
+}
+
+.save-icon {
+  position: relative;
+  z-index: 1;
+  inline-size: 1.3125rem;
+  block-size: 1.3125rem;
+  color: var(--accent-color);
+  mix-blend-mode: difference;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog {
+  padding: 1.875rem;
+  border: 2px solid var(--text-color);
+  background-color: var(--background-color);
+  font-family: var(--accent-font);
+  color: var(--text-color);
+  inline-size: min(22.0625rem, 100% - 2rem);
+}
+
+.dialog[open] {
+  display: grid;
+  gap: 1.875rem;
+}
+
+.dialog__content {
+  display: grid;
+  grid-template-columns: 2.4375rem 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.dialog__icon {
+  inline-size: 2.4375rem;
+  block-size: 2.4375rem;
+}
+
+.dialog__button {
+  padding: 0.5625rem 1.0625rem;
+  inline-size: 100%;
+  text-transform: uppercase;
+}
+
+@media (width <= 375px) {
+  .header__wrapper {
+    margin-block: 6.25rem 6.25rem;
+  }
+
+  .card__label {
+    margin: 1.25rem 0.8125rem 0 0;
+  }
+
+  .button_save {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .save-icon {
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+  }
 }
