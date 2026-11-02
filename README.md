@@ -1,2 +1,3 @@
 # Закрывающий тег
-https://dasha188s.github.io/zakrivayuschiy-teg-ad/
+
+https://github.com/Dasha188S/zakrivayuschiy-teg-ad
